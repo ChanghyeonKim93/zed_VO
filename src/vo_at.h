@@ -67,7 +67,7 @@ ros::ServiceServer              toggleServiceServer;
 	// pose and status
 	geometry_msgs::PoseStamped vo_data;
 	bool vo_toggle;
-	//unsigned long long previous_timestamp, current_timestamp;
+	unsigned long long previous_timestamp, current_timestamp;
 
 	float rx, ry, rz;
 	float tx, ty, tz;
@@ -92,6 +92,8 @@ VOAT::VOAT() {
 
 	// initialize variables
 	this->vo_toggle = false;
+	this->previous_timestamp = 0.0;
+	this->current_timestamp  = 0.0;
 
 	printf("VO constructor.\n");
 }
@@ -172,7 +174,12 @@ void VOAT::publish_pose() {
 			this->transformCoordinate(this->tx, this->ty, this->tz);
 
 			// Display the translation & rotation & timestamp
-			printf("Translation: Tx: %.3f, Ty: %.3f, Tz: %.3f \n", this->tx,this-> ty, this->tz);
+
+			this->previous_timestamp = this->current_timestamp;
+			this->current_timestamp = this->zed_pose.timestamp;
+			double dt = (double) (this->current_timestamp - this->previous_timestamp) * 0.000000001;
+
+			printf("Translation: Tx: %.3f, Ty: %.3f, Tz: %.3f, dt: %.3lf \n", this->tx,this-> ty, this->tz, dt);
 			
 			// Publish VO pose
 			this->vo_data.pose.position.x = this->tx;
