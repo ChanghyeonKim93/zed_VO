@@ -4,7 +4,7 @@
 
 
 int main(int argc, char **argv) {
-    ros::init(argc, argv, "voTopics");
+    ros::init(argc, argv, "vo_node");
 
     VOAT* vo_with_zed = new VOAT();
 

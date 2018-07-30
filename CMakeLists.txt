@@ -103,12 +103,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 # TESTS
 
 ## Declare executables
-add_executable(voTopics src/main.cpp src/vo_at.h)
+add_executable(vo_node src/main.cpp src/vo_at.h)
 add_definitions(-std=c++0x -g -O3)
 
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(voTopics ${LINK_LIBS}
+target_link_libraries(vo_node ${LINK_LIBS}
                                ${ZED_LIBRARIES}
                                ${OpenCV_LIBRARIES}
                                ${Boost_LIBRARIES}
@@ -116,4 +116,4 @@ target_link_libraries(voTopics ${LINK_LIBS}
 
 
 ## Add dependencies
-add_dependencies(voTopics ${PROJECT_NAME}_gencpp)
+add_dependencies(vo_node ${PROJECT_NAME}_gencpp)

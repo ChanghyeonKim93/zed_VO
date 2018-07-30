@@ -59,7 +59,7 @@ class VOAT {
 	// node handler, publishers, and subscribers
     ros::NodeHandle                 nh;
     ros::Publisher                  voPosePubGeometry;
-	ros::ServiceServer              toggleServiceServer;
+ros::ServiceServer              toggleServiceServer;
 
 	//image_transport::ImageTransport it;
 	//image_transport::Publisher      imgPubLeft, imgPubRight;
@@ -84,13 +84,11 @@ class VOAT {
 };
 
 VOAT::VOAT() {
-	this->voPosePubGeometry = this->nh.advertise<geometry_msgs::PoseStamped> 
-
 	// Service
-	toggleServiceServer = this->nh.advertiseService("sgpvo/vo_toggle", this->toggle_callback);
+	this->toggleServiceServer = this->nh.advertiseService("sgpvo/vo_toggle", &VOAT::toggle_callback, this);
 
 	// Publisher
-	posePublisher = this->nh.advertise<geometry_msgs::PoseStamped> ("sgpvo/pose", 1);
+	this->voPosePubGeometry = this->nh.advertise<geometry_msgs::PoseStamped> ("sgpvo/pose", 1);
 
 	// initialize variables
 	this->vo_toggle = false;
@@ -191,8 +189,11 @@ void VOAT::publish_pose() {
 
 }
 
+bool VOAT::get_toggle() {
+       return this->vo_toggle;
+}
 
-bool VOAT::toggle_callback(std_srvs::SetBool::Request &req, std_srvs::SetBool::Response &res);
+bool VOAT::toggle_callback(std_srvs::SetBool::Request &req, std_srvs::SetBool::Response &res) {
 	if(req.data == true) {
 		this->start_vo();       // start vo
 		this->vo_toggle = true; // go to VO-on mode.
