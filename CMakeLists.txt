@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(icslrover_vo)
+project(icslat_vo)
 
 set(CMAKE_BUILD_TYPE Release)
 set(BUILD_STATIC_LIBS ON)
@@ -103,7 +103,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 # TESTS
 
 ## Declare executables
-add_executable(voTopics src/voTopics.cpp)
+add_executable(voTopics src/main.cpp src/vo_at.h)
 add_definitions(-std=c++0x -g -O3)
 
 

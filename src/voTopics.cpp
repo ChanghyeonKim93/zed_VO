@@ -293,7 +293,7 @@ void transformCoordinate(float& tx, float& ty, float& tz)
 	//tx = (float)zed_translation_new(0);
 	//ty = (float)zed_translation_new(1);
 	//tz = (float)zed_translation_new(2);
-    	tx = (float)zed_translation_new(2);
+    tx = (float)zed_translation_new(2);
 	ty = -(float)zed_translation_new(0);
 	tz = -(float)zed_translation_new(1);
 }

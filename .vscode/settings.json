@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "dense": "cpp",
+        "*.tcc": "cpp",
+        "fstream": "cpp",
+        "array": "cpp",
+        "cholesky": "cpp",
+        "core": "cpp",
+        "geometry": "cpp",
+        "lu": "cpp",
+        "qr": "cpp",
+        "svd": "cpp"
+    }
+}
