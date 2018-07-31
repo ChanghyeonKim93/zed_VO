@@ -85,10 +85,10 @@ ros::ServiceServer              toggleServiceServer;
 
 VOAT::VOAT() {
 	// Service
-	this->toggleServiceServer = this->nh.advertiseService("sgpvo/vo_toggle", &VOAT::toggle_callback, this);
+	this->toggleServiceServer = this->nh.advertiseService("gcs/vo/vo_toggle", &VOAT::toggle_callback, this);
 
 	// Publisher
-	this->voPosePubGeometry = this->nh.advertise<geometry_msgs::PoseStamped> ("sgpvo/pose", 1);
+	this->voPosePubGeometry = this->nh.advertise<geometry_msgs::PoseStamped> ("jetson/vo/pose", 1);
 
 	// initialize variables
 	this->vo_toggle = false;
