@@ -20,8 +20,9 @@ int main(int argc, char **argv) {
             vo_with_zed->publish_pose();
 		}
         else { // From gcs, no signal is transmitted. This node do not any work.     
-            printf("VO node is deactivated.\n");
+            if(image_counter % 50 == 1) printf("[TIMEOUT] VO node : not activated yet!\n");
         }
+		image_counter++;
 		loop_rate.sleep();
 	}
 

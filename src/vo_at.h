@@ -92,7 +92,7 @@ class VOAT
 VOAT::VOAT()
 {
 	// Service
-	this->toggleServiceServer = this->nh.advertiseService("gcs/vo/vo_toggle", &VOAT::toggle_callback, this);
+	this->toggleServiceServer = this->nh.advertiseService("topic_converter/vo/vo_toggle", &VOAT::toggle_callback, this);
 
 	// Publisher
 	this->voPosePubGeometry = this->nh.advertise<geometry_msgs::PoseStamped>("jetson/vo/pose", 1);
@@ -196,7 +196,7 @@ void VOAT::publish_pose()
 			this->current_timestamp = this->zed_pose.timestamp;
 			double dt = (double)(this->current_timestamp - this->previous_timestamp) * 0.000000001;
 
-			printf("Translation: Tx: %.3f, Ty: %.3f, Tz: %.3f, dt: %.3lf \n", this->tx, this->ty, this->tz, dt);
+			printf("Translation: Tx: %.3f, Ty: %.3f, Tz: %.3f, dt: %.3lf, freq: %.3lf [Hz]\n", this->tx, this->ty, this->tz, dt, 1/dt);
 
 			// Publish VO pose
 			this->vo_pose.pose.position.x = this->tx;
