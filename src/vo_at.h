@@ -31,7 +31,7 @@
 // Eigen includes
 #include <eigen3/Eigen/Dense>
 
-#define PI 3.141592
+#define PI 3.14159265358979323846
 
 class VOAT
 {
@@ -101,9 +101,9 @@ VOAT::VOAT()
 	//this->gpsAttQuatSub       = this->nh.subscribe<geometry_msgs::QuaternionStamped>("dji_sdk/attitude", &VOAT::gps_callback, this);
 
 	// initialize variables
-	this->vo_toggle = false;
+	this->vo_toggle          = false;
 	this->previous_timestamp = 0.0;
-	this->current_timestamp = 0.0;
+	this->current_timestamp  = 0.0;
 
 	printf("VO constructor.\n");
 }
