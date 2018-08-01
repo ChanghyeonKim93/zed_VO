@@ -120,10 +120,10 @@ void VOAT::initialize_cameras()
 	// Set configuration parameters
 	this->init_params.camera_resolution = sl::RESOLUTION_VGA;
 	this->init_params.coordinate_system = sl::COORDINATE_SYSTEM_IMAGE;
-	this->init_params.coordinate_units = sl::UNIT_METER;
+	this->init_params.coordinate_units  = sl::UNIT_METER;
 
-	this->init_params.camera_fps = 60;
-	this->init_params.depth_mode = sl::DEPTH_MODE_PERFORMANCE;
+	this->init_params.camera_fps  = 60;
+	this->init_params.depth_mode  = sl::DEPTH_MODE_PERFORMANCE;
 	this->init_params.sdk_verbose = true;
 
 	// Open the camera
@@ -202,10 +202,12 @@ void VOAT::publish_pose()
 			this->vo_pose.pose.position.x = this->tx;
 			this->vo_pose.pose.position.y = this->ty;
 			this->vo_pose.pose.position.z = this->tz;
-			this->vo_pose.pose.orientation.x = this->ox;
+			this->vo_pose.pose.orientation.x = this->ox; // quaternion for presenting the rotation.
 			this->vo_pose.pose.orientation.y = this->oy;
 			this->vo_pose.pose.orientation.z = this->oz;
 			this->vo_pose.pose.orientation.w = this->ow;
+
+                        this->vo_pose.header.stamp = ros::Time::now(); // record the time
 
 			this->voPosePubGeometry.publish(this->vo_pose);
 		}
